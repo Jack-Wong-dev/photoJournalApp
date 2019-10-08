@@ -29,7 +29,7 @@ class JournalViewController: UIViewController {
         super.viewDidLoad()
         journalCollectionView.dataSource = self
         journalCollectionView.delegate = self
-        loadSettings()
+        setUpScrolling()
         
     }
     
@@ -126,28 +126,24 @@ extension JournalViewController : UICollectionViewDelegate, UICollectionViewData
 
 
 extension JournalViewController: SettingsDelegate{
+    
     func updateBackgroundMode(){
         
-        guard let defaultBackgroundColor = UserDefaultsWrapper.shared.getBackgroundMode() else {colorMode = .white
+        guard let defaultBackgroundColor = UserDefaultsWrapper.shared.getBackgroundMode() else {
+            
+            colorMode = .white
+            fontColor = .black
+            
             return
         }
         
         colorMode = defaultBackgroundColor == 0 ? .white : .black
+        fontColor = defaultBackgroundColor == 0 ? .black : .white
         
         journalCollectionView.reloadData()
     }
     
-    func loadTextColor(){
-        
-        guard let defaultBackgroundColor = UserDefaultsWrapper.shared.getBackgroundMode() else {fontColor = .black
-            return
-        }
-        
-        fontColor = defaultBackgroundColor == 0 ? .black : .white
-  
-    }
-    
-    func loadSettings() {
+    func setUpScrolling() {
         if let defaultDirection = UserDefaultsWrapper.shared.getScrollDirection() {
             let currentDirection = defaultDirection == 0 ? UICollectionView.ScrollDirection.vertical : UICollectionView.ScrollDirection.horizontal
             

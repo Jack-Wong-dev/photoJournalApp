@@ -163,6 +163,9 @@
                                     <segment title="Dark Mode"/>
                                 </segments>
                                 <color key="selectedSegmentTintColor" systemColor="systemGreenColor" red="0.20392156862745098" green="0.7803921568627451" blue="0.34901960784313724" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <connections>
+                                    <action selector="changeBackgroundMode:" destination="mBJ-7s-DDY" eventType="valueChanged" id="6gF-Nc-8yx"/>
+                                </connections>
                             </segmentedControl>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
