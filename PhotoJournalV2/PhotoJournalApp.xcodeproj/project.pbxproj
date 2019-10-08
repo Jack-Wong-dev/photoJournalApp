@@ -9,6 +9,8 @@
 /* Begin PBXBuildFile section */
 		0A7160DE234BC3F00028FBBB /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A7160DD234BC3F00028FBBB /* SettingsViewController.swift */; };
 		0A7160E0234C40550028FBBB /* PhotoJournalHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A7160DF234C40540028FBBB /* PhotoJournalHelper.swift */; };
+		0A7160E2234C57140028FBBB /* UserDefaultsWrapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A7160E1234C57140028FBBB /* UserDefaultsWrapper.swift */; };
+		0A7160E4234CB2CD0028FBBB /* customDelegation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A7160E3234CB2CD0028FBBB /* customDelegation.swift */; };
 		0AD63377234972E900B38B15 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AD63376234972E900B38B15 /* AppDelegate.swift */; };
 		0AD63379234972E900B38B15 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AD63378234972E900B38B15 /* SceneDelegate.swift */; };
 		0AD6337B234972E900B38B15 /* JournalViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AD6337A234972E900B38B15 /* JournalViewController.swift */; };
@@ -35,6 +37,8 @@
 /* Begin PBXFileReference section */
 		0A7160DD234BC3F00028FBBB /* SettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
 		0A7160DF234C40540028FBBB /* PhotoJournalHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoJournalHelper.swift; sourceTree = "<group>"; };
+		0A7160E1234C57140028FBBB /* UserDefaultsWrapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefaultsWrapper.swift; sourceTree = "<group>"; };
+		0A7160E3234CB2CD0028FBBB /* customDelegation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = customDelegation.swift; sourceTree = "<group>"; };
 		0AD63373234972E900B38B15 /* PhotoJournalApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PhotoJournalApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		0AD63376234972E900B38B15 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		0AD63378234972E900B38B15 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -129,6 +133,8 @@
 				0AD633A0234979C000B38B15 /* DataPersistenceManager.swift */,
 				0A7160DF234C40540028FBBB /* PhotoJournalHelper.swift */,
 				0AD6339E234979A300B38B15 /* PhotoJournal.swift */,
+				0A7160E1234C57140028FBBB /* UserDefaultsWrapper.swift */,
+				0A7160E3234CB2CD0028FBBB /* customDelegation.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -235,6 +241,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				0AD6339A2349742A00B38B15 /* EditViewController.swift in Sources */,
+				0A7160E4234CB2CD0028FBBB /* customDelegation.swift in Sources */,
 				0A7160DE234BC3F00028FBBB /* SettingsViewController.swift in Sources */,
 				0AD6337B234972E900B38B15 /* JournalViewController.swift in Sources */,
 				0AD6339F234979A300B38B15 /* PhotoJournal.swift in Sources */,
@@ -243,6 +250,7 @@
 				0AD6339D2349791300B38B15 /* JournalCell.swift in Sources */,
 				0A7160E0234C40550028FBBB /* PhotoJournalHelper.swift in Sources */,
 				0AD63379234972E900B38B15 /* SceneDelegate.swift in Sources */,
+				0A7160E2234C57140028FBBB /* UserDefaultsWrapper.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

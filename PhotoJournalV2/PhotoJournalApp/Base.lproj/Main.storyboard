@@ -127,43 +127,60 @@
         <!--Settings View Controller-->
         <scene sceneID="TBw-8c-yCH">
             <objects>
-                <viewController id="mBJ-7s-DDY" customClass="SettingsViewController" customModule="PhotoJournalApp" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="settingsController" id="mBJ-7s-DDY" customClass="SettingsViewController" customModule="PhotoJournalApp" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="LBJ-Gu-bsX">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="gZk-vQ-6tm">
-                                <rect key="frame" x="77" y="148" width="49" height="31"/>
+                            <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="lJe-4b-o5Z">
+                                <rect key="frame" x="0.0" y="44" width="414" height="44"/>
+                                <items>
+                                    <barButtonItem style="plain" systemItem="flexibleSpace" id="Wv2-Xl-10v"/>
+                                    <barButtonItem title="Done" id="uSN-e6-WVy">
+                                        <connections>
+                                            <action selector="done:" destination="mBJ-7s-DDY" id="P6a-Ly-uJi"/>
+                                        </connections>
+                                    </barButtonItem>
+                                </items>
+                            </toolbar>
+                            <segmentedControl opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="cJD-1l-zSr">
+                                <rect key="frame" x="114" y="186" width="187" height="32"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                            </switch>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Scrolling" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Qde-DC-k9o">
-                                <rect key="frame" x="234" y="153" width="67" height="21"/>
+                                <segments>
+                                    <segment title="Vertical"/>
+                                    <segment title="Horizantal"/>
+                                </segments>
+                                <color key="selectedSegmentTintColor" systemColor="systemGreenColor" red="0.20392156862745098" green="0.7803921568627451" blue="0.34901960784313724" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <connections>
+                                    <action selector="changeScrollDirection:" destination="mBJ-7s-DDY" eventType="valueChanged" id="ylK-4m-I6h"/>
+                                </connections>
+                            </segmentedControl>
+                            <segmentedControl opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="mVY-Pm-kj8">
+                                <rect key="frame" x="114" y="286" width="187" height="32"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Color" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="btU-SD-gH7">
-                                <rect key="frame" x="91" y="326" width="42" height="21"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="mQj-1w-7OX">
-                                <rect key="frame" x="159" y="373" width="97" height="34"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits"/>
-                            </textField>
+                                <segments>
+                                    <segment title="Light Mode"/>
+                                    <segment title="Dark Mode"/>
+                                </segments>
+                                <color key="selectedSegmentTintColor" systemColor="systemGreenColor" red="0.20392156862745098" green="0.7803921568627451" blue="0.34901960784313724" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            </segmentedControl>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <constraints>
+                            <constraint firstItem="lJe-4b-o5Z" firstAttribute="leading" secondItem="hhj-ov-iCs" secondAttribute="leading" id="5Km-Es-BhF"/>
+                            <constraint firstItem="lJe-4b-o5Z" firstAttribute="top" secondItem="hhj-ov-iCs" secondAttribute="top" id="Bm6-XB-0Hv"/>
+                            <constraint firstItem="lJe-4b-o5Z" firstAttribute="trailing" secondItem="hhj-ov-iCs" secondAttribute="trailing" id="D7H-Tl-JkI"/>
+                        </constraints>
                         <viewLayoutGuide key="safeArea" id="hhj-ov-iCs"/>
                     </view>
+                    <connections>
+                        <outlet property="colorModeSegmentedControl" destination="mVY-Pm-kj8" id="RzP-Ti-7Ua"/>
+                        <outlet property="scrollSegmentedControl" destination="cJD-1l-zSr" id="ovH-rf-5QD"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="g64-Yb-6rW" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="138" y="795"/>
+            <point key="canvasLocation" x="137.68115942028987" y="794.86607142857144"/>
         </scene>
         <!--Edit View Controller-->
         <scene sceneID="TAB-V3-6ZI">

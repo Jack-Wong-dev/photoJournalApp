@@ -15,6 +15,9 @@ class JournalViewController: UIViewController {
     
     @IBOutlet weak var addButton: UIBarButtonItem!
     
+    var colorMode: UIColor!
+    var fontColor: UIColor!
+    
     //Most recent posts goes appears first
     private var storedPhotoJournals = PhotoJournalHelper.retrievePhotoJournals(){
         didSet{
@@ -26,6 +29,8 @@ class JournalViewController: UIViewController {
         super.viewDidLoad()
         journalCollectionView.dataSource = self
         journalCollectionView.delegate = self
+        loadSettings()
+        
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -42,7 +47,13 @@ class JournalViewController: UIViewController {
     
     @IBAction func settingsButtonPressed(_ sender: UIBarButtonItem) {
         
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        let settingsVC = storyboard.instantiateViewController(withIdentifier: "settingsController") as! SettingsViewController
+        settingsVC.modalPresentationStyle = .currentContext
         
+        settingsVC.settingDelegate = self
+        
+        present(settingsVC, animated: true, completion: .none)
     }
     
     
@@ -68,8 +79,8 @@ class JournalViewController: UIViewController {
         {
             (alert: UIAlertAction!) -> Void in
             if let image = UIImage(data: self.storedPhotoJournals[sender.tag].imageData) {
-                let shareText = self.storedPhotoJournals[sender.tag].description
-                let vc = UIActivityViewController(activityItems: [shareText, image], applicationActivities: [])
+                let sharedText = self.storedPhotoJournals[sender.tag].description
+                let vc = UIActivityViewController(activityItems: [sharedText, image], applicationActivities: [])
                 self.present(vc, animated: true, completion: nil)
             }
         })
@@ -79,8 +90,7 @@ class JournalViewController: UIViewController {
             PhotoJournalHelper.deletePhoto(atIndex: sender.tag)
             self.storedPhotoJournals  = PhotoJournalHelper.retrievePhotoJournals()
         }
-        
-        
+
         //Cancel
         let cancel = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
         
@@ -90,9 +100,6 @@ class JournalViewController: UIViewController {
         alert.addAction(cancel)
         present(alert, animated: true, completion: nil)
     }
-    
-    
-    
 }
 
 extension JournalViewController : UICollectionViewDelegate, UICollectionViewDataSource{
@@ -105,16 +112,11 @@ extension JournalViewController : UICollectionViewDelegate, UICollectionViewData
         
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "jCell", for: indexPath) as? JournalCell else { return UICollectionViewCell() }
         let somePhotoJournal = storedPhotoJournals[indexPath.row]
-        cell.layer.cornerRadius = 12
-        cell.layer.borderWidth = 4
-        cell.captionLabel.text = somePhotoJournal.description
-        print(somePhotoJournal.description)
-        cell.optionButtonLabel.tag = indexPath.row
-        cell.cellImage.image = UIImage(data: somePhotoJournal.imageData)
-        cell.timeStamp.text = somePhotoJournal.dateFormattedString
-        print(cell.timeStamp.text)
-        print()
         
+        cell.configureCell(journal: somePhotoJournal, tag: indexPath.row)
+        cell.backgroundColor = colorMode
+        cell.captionLabel.textColor = fontColor
+        cell.timeStamp.textColor = fontColor
         
         return cell
     }
@@ -122,4 +124,38 @@ extension JournalViewController : UICollectionViewDelegate, UICollectionViewData
     
 }
 
+
+extension JournalViewController: SettingsDelegate{
+    func updateBackgroundMode(){
+        
+        guard let defaultBackgroundColor = UserDefaultsWrapper.shared.getBackgroundMode() else {colorMode = .white
+            return
+        }
+        
+        colorMode = defaultBackgroundColor == 0 ? .white : .black
+        
+        journalCollectionView.reloadData()
+    }
+    
+    func loadTextColor(){
+        
+        guard let defaultBackgroundColor = UserDefaultsWrapper.shared.getBackgroundMode() else {fontColor = .black
+            return
+        }
+        
+        fontColor = defaultBackgroundColor == 0 ? .black : .white
+  
+    }
+    
+    func loadSettings() {
+        if let defaultDirection = UserDefaultsWrapper.shared.getScrollDirection() {
+            let currentDirection = defaultDirection == 0 ? UICollectionView.ScrollDirection.vertical : UICollectionView.ScrollDirection.horizontal
+            
+            if let collectionLayout = journalCollectionView.collectionViewLayout as? UICollectionViewFlowLayout {
+                collectionLayout.scrollDirection = currentDirection
+            }
+        }
+    }
+    
+}
 
